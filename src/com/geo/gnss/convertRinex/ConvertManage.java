@@ -195,14 +195,12 @@ public class ConvertManage {
 	}
 	
 	private boolean readHead(byte[] bt) {
-		int zone = convertParDao.getZone() - 12;
 		String ss = "";
 		
 		byte[] destTime = new byte[8];
 		System.arraycopy(bt, 107, destTime, 0, 8);
 		ss = new String(destTime);
 		int startHour = Integer.parseInt(ss.substring(0,ss.indexOf(":")));
-		startHour += zone;
 		//System.out.println("StartTime:" + startHour);
 		
 		System.arraycopy(bt, 115, destTime, 0, 8);
@@ -212,7 +210,6 @@ public class ConvertManage {
 		}
 		
 		int endHour = Integer.parseInt(ss.substring(0,ss.indexOf(":")));
-		endHour += zone;
 		//System.out.println("EndTime:" + endHour);
 		
 		boolean res = false;

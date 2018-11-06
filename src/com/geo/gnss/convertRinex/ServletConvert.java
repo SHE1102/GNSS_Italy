@@ -44,7 +44,6 @@ public class ServletConvert extends HttpServlet {
 		requestParam.setStartTime(request.getParameter("StartTime"));
 		requestParam.setEndTime(request.getParameter("EndTime"));
 		requestParam.setStationName(request.getParameter("StationName"));
-		requestParam.setZone(Integer.parseInt(request.getParameter("Zone")));
 		
 		ConvertManage rinexConvertManger = new ConvertManage(rawPath, appPath, request.getSession().getId(), requestParam);
 		boolean res = rinexConvertManger.Convert();
