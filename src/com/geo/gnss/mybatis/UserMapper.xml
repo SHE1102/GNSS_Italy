@@ -37,4 +37,8 @@
     <delete id="deleteUserByName" parameterType="String">
         delete from customer where name = #{name}
     </delete>
+    
+    <insert id="insertDownloadLog" parameterType="com.geo.gnss.convertRinex.DownloadInforDao">
+        insert into download_log (type, user, currentDate, dataDate, startTime, endTime, version, station) values (#{type}, #{user}, #{currentDate}, #{dataDate}, #{startTime}, #{endTime}, #{rinexVersion}, #{stationName})
+    </insert>
 </mapper>

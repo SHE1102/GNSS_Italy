@@ -70,6 +70,27 @@ $(function(){
 				window.open($href, '_blank');
 			});
 			
+            var $table = $("<table style='text-align:center;border-collapse:collapse;background:#EEE;'></table>");
+			
+			var $idTd = $("<td style='border:1px solid #bbb;'></td>").text(station.id);
+			var $nameTd = $("<td style='border:1px solid #bbb;'></td>").text(station.name);
+			var $latTd = $("<td style='border:1px solid #bbb;'></td>").text(station.latitudeFormat);
+			var $lonTd = $("<td style='border:1px solid #bbb;'></td>").text(station.longitudeFormat);
+			var $heightTd = $("<td style='border:1px solid #bbb;'></td>").text(station.altitude);
+			var $antennaTypeTd = $("<td style='border:1px solid #bbb;'></td>").text(station.antennaType);
+			var $L1Td = $("<td style='border:1px solid #bbb;'></td>").text(station.HL1);
+			var $L2Td = $("<td style='border:1px solid #bbb;'></td>").text(station.HL2);
+			
+			$table.append($("<tr style='border:1px solid #bbb;'></tr>").append($("<th>Id</th>")).append($("<th>City</th>")).append($("<th></th>")));
+			$table.append($("<tr style='border:1px solid #bbb;'></tr>").append($idTd).append($nameTd).append($("<td></td>")));
+			$table.append($("<tr style='border:1px solid #bbb;'></tr>").append($("<th>Latitude</th>")).append($("<th>Longitude</th>")).append($("<th>Altitude</th>")));
+			$table.append($("<tr style='border:1px solid #bbb;'></tr>").append($latTd).append($lonTd).append($heightTd));
+			$table.append($("<tr style='border:1px solid #bbb;'></tr>").append($("<th>Antenna Type</th>")).append($("<th>H L1(m)</th>")).append($("<th>H L2(m)</th>")));
+			$table.append($("<tr style='border:1px solid #bbb;'></tr>").append($antennaTypeTd).append($L1Td).append($L2Td));
+			$divContainer = $("<div></div>").append($table);
+			
+			var toolTips = $divContainer.html();
+			marker.bindTooltip(toolTips);
 		}
 	}
 	

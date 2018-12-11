@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import com.geo.gnss.monograph.MonographManage;
+import com.geo.gnss.util.StationSort;
 
 
 public class StationManage {
@@ -46,6 +48,8 @@ public class StationManage {
     			}
     		}
     	}
+    	
+    	Collections.sort(stationList, new StationSort());
     }
     public void read( String xmlPath) throws Exception{
     	SAXReader reader = new SAXReader();
@@ -76,6 +80,7 @@ public class StationManage {
 					st.setRemark(content);
 				}else if("ANTENNA".equals(tagName)){
 					content = node.elementText("ANTENNAPAR");
+					st.parseAntennaParameter(content);
 				}else if("ANTENNAPOINT_CTS".equals(tagName)){
 					content = node.elementText("X");
 					st.setX(Double.parseDouble(content));
@@ -148,6 +153,9 @@ public class StationManage {
 			+"\",\"latitudeFormat\":\"" + obj.getLatitudeText()
 			+"\",\"longitudeFormat\":\"" + obj.getLongitudeText()
 			+"\",\"altitude\":\"" + obj.getHeight()
+			+"\",\"antennaType\":\"" + obj.getAntennaType()
+			+"\",\"HL1\":\"" + obj.getU1()
+			+"\",\"HL2\":\"" + obj.getU2()
 			+"\"}";
 			
 			if(obj != stationList.get(0)){
@@ -189,6 +197,9 @@ public class StationManage {
 			+"\",\"longitudeFormat\":\"" + obj.getLongitudeText()
 			+"\",\"altitude\":" + obj.getHeight()
 			+",\"distance\":\"" + obj.getTargetDistanceText()
+			+"\",\"antennaType\":\"" + obj.getAntennaType()
+			+"\",\"HL1\":\"" + obj.getU1()
+			+"\",\"HL2\":\"" + obj.getU2()
 			+"\"}";
 			
 			if(obj != stationList.get(0)){

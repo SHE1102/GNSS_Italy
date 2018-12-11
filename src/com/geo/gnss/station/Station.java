@@ -4,6 +4,7 @@ public class Station {
 	private String name="",id="",remark="";
 	private double x=0,y=0,z=0;
 	private double destinationB = 0,destinationL = 0,destinationH = 0;
+	private String antennaType = "", antennaCode = "";
 	private double N1=0,E1=0,U1=0;
 	private double N2=0,E2=0,U2=0;
 	private double targetDistance = 0;
@@ -35,6 +36,21 @@ public class Station {
 	public void setZ(double z) {
 		this.z = z;
 		XYZToBLH(x, y, z);
+	}
+	
+	public void parseAntennaParameter(String antennaParameter) {
+		String antennaSplitString = antennaParameter.substring("ANTENNA:".length());
+		String[] split = antennaSplitString.split(",");
+		
+		antennaType = split[0];
+		antennaCode = split[1];
+	}
+	
+	public String getAntennaType() {
+		return antennaType;
+	}
+	public String getAntennaCode() {
+		return antennaCode;
 	}
 	public void setN1(double n1) {
 		N1 = n1;
