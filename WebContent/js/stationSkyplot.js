@@ -1,13 +1,15 @@
 $(function(){
 	
+	
+	initialChart();
 	var $canvas = $("#Skyplot");
-	$canvas[0].width = $("#SkyplotDiv").width();
-	$canvas[0].height = $("#SkyplotDiv").height();
+	//$canvas[0].width = $("#SkyplotDiv").width();
+	//$canvas[0].height = $("#SkyplotDiv").height();
 	
 	$(window).resize(function() {
-		$canvas[0].width = $("#SkyplotDiv").width();
-		paintBackground();
-		changeStation();
+		//$canvas[0].width = $("#SkyplotDiv").width();
+		//paintBackground();
+		//changeStation();
 	});
 
 	paintBackground();
@@ -49,6 +51,7 @@ $(function(){
 		
 		$.getJSON("../Skyplot",{stationName: $arr[1]},function(json){
 			paintSkyplot(json);
+			paintGraph(json);
 		});
 	}
 	
@@ -148,6 +151,8 @@ $(function(){
 		 context.fillText("SBAS", left+rectWidth/2, top+rectHeight/2);
 	 }
 	 
+	
+	
 	 function paintSkyplot(satelliteJson) {
 		 var $canvas = $("#Skyplot");
 		 
@@ -228,5 +233,160 @@ $(function(){
 				context.fillText(Sat.id, satpoint_x, satpoint_y);
 		 }
 	 }
-	
+	 
+	 function paintGraph(satelliteJson){
+		 var $categoriesG = new Array();
+		 var $dataG1 = new Array();
+		 var $dataG2 = new Array();
+		 
+		 var $categoriesR = new Array();
+		 var $dataR1 = new Array();
+		 var $dataR2 = new Array();
+		 
+		 var $categoriesC = new Array();
+		 var $dataC1 = new Array();
+		 var $dataC2 = new Array();
+		 
+		 for(var i=0;i<satelliteJson.satellite.length;i++){
+				var Sat = satelliteJson.satellite[i];
+				
+				if(Sat.type == 0){
+					$categoriesG.push(Sat.id);
+					$dataG1.push(Number(Sat.snr0));
+					$dataG2.push(Number(Sat.snr1));		
+				} else if(Sat.type == 1){
+					$categoriesR.push(Sat.id);
+					$dataR1.push(Number(Sat.snr0));
+					$dataR2.push(Number(Sat.snr1));			
+				} else if(Sat.type == 2){
+					$categoriesC.push(Sat.id);
+					$dataC1.push(Number(Sat.snr0));
+					$dataC2.push(Number(Sat.snr1));				
+				}	
+		 }
+		 
+		 paintChartGraph(true, $categoriesG, $dataG1, $dataG2, 0);
+		 paintChartGraph(false, $categoriesR, $dataR1, $dataR2, 1);
+		 paintChartGraph(false, $categoriesC, $dataC1, $dataC2, 2);
+		 
+	}
+	 
+	 function initialChart(){
+		 var $categories = new Array();
+		 var $data1 = new Array();
+		 var $data2 = new Array();
+
+		 for(var i=0; i<7; i++){
+			 $categories.push(" ");
+			 $data1.push(0);
+			 $data2.push(0);
+		 }
+		 
+		 paintChartGraph(true, $categories, $data1, $data2, 0);
+		 paintChartGraph(false, $categories, $data1, $data2, 1);
+		 paintChartGraph(false, $categories, $data1, $data2, 2);
+	 }
+	 
+	 function paintChartGraph(showY, $categories, $data1, $data2, type){
+		 var $chartWidth;
+		 if($categories.length == 0){
+			 $chartWidth = 7*50;
+		 } else {
+			 $chartWidth = $categories.length*50
+		 }
+			var chart = {
+			      type: 'column',
+			      width:$chartWidth
+			   };
+			   var title = {
+			      text: ''   
+			   };
+			   var subtitle = {
+			      text: ''  
+			   };
+			    
+			   var xAxis = {
+			      categories:$categories,
+			      crosshair: true
+			   };
+			   var yAxis = {
+			      min: 0,
+			      title: {
+			         text: ''         
+			      },
+			      labels:{
+			          enabled: showY
+			      }
+			   };
+			   var tooltip = {
+			      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			         '<td style="padding:0"><b>{point.y:.f} </b></td></tr>',
+			      footerFormat: '</table>',
+			      shared: true,
+			      useHTML: true
+			   };
+			   var plotOptions = {
+			      column: {
+			    	 pointWidth: 13,
+			         pointPadding: 0.2,
+			         borderWidth: 0
+			      }
+			   };
+			   var credits = {
+			      enabled: false
+			   };
+			   
+			   var $name1,$name2;
+			   var $color1,$color2;
+			   
+			   if(type == 0){
+				   $name1 = "L1";
+				   $name2 = "L2"; 
+				   $color1 = "#4472C4";
+				   $color2 = "#5B9BD5";
+			   } else if(type == 1){
+				   $name1 = "G1";
+				   $name2 = "G2"; 
+				   $color1 = "#C00000";
+				   $color2 = "#ED7D31";
+			   } else if(type == 2){
+				   $name1 = "B1";
+				   $name2 = "B2"; 
+				   $color1 = "#00FF00";
+				   $color2 = "#99FF99";
+			   }
+			   
+			   var series= [
+			        {
+			            name: $name1,
+			            color: $color1,
+			            data: $data1
+			        },
+			        {
+			            name: $name2,
+			            color: $color2,
+			            data: $data2
+			        }
+			   ];
+			      
+			   var json = {};
+			   json.chart = chart;
+			   json.title = title;
+			   json.subtitle = subtitle;
+			   json.tooltip = tooltip;
+			   json.xAxis = xAxis;
+			   json.yAxis = yAxis;
+			   json.series = series;
+			   json.plotOptions = plotOptions;
+			   json.credits = credits;
+			   
+			   if(type == 0){
+				   $('#GChart').highcharts(json);
+			   } else if (type == 1){
+				   $('#RChart').highcharts(json);
+			   } else if (type == 2){
+				   $('#CChart').highcharts(json);
+			   }
+		}
 })

@@ -43,13 +43,22 @@
             id int auto_increment,
             type int not null,
             user varchar(20) not null,
-            currentDate date,
+            downloadDate date,
 		    dataDate date,
 		    startTime time,
 		    endTime time,
 		    version varchar(10),
 		    station varchar(20),
 		    primary key(id)
+        )
+    </update>
+    <update id="createTableRecord">
+        create table if not exists record(
+            recordDate date,
+		    register int,
+		    downloadRinex int,
+		    downloadVirtual int,
+		    primary key(recordDate)
         )
     </update>
     

@@ -1,0 +1,25 @@
+#SkyplotDiv{width:100%;height:800px;}
+#StationList{width:200px;height:30px;}
+span#SelectSkyplot{float:right;border:20px solid transparent;border-right-color: #DDD;}
+
+#Paint{
+height:800px;
+width:100%;
+display: flex;
+}
+.FlexDiv{
+ display: flex;
+}
+
+#ChartTitle{
+display:inline-block;
+width:100%;
+height:100px;
+line-height:100px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+}
+#ChartDiv{
+ height:650px;
+}

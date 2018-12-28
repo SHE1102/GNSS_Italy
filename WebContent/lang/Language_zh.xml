@@ -23,4 +23,11 @@
 	<ids_stop_ftp_failed>关闭FTP服务器失败</ids_stop_ftp_failed>
 	<ids_choose_satellite>请选择卫星系统</ids_choose_satellite>
 	<ids_no_data>没有数据</ids_no_data>
+	<ids_register_customer>注册用户</ids_register_customer>
+	<ids_register_count>注册数量</ids_register_count>
+	<ids_download_statistic>下载数量统计</ids_download_statistic>
+	<ids_count>计数</ids_count>
+	<ids_rover_statistic>移动站信息统计</ids_rover_statistic>
+	<ids_rover_count>移动站数量</ids_rover_count>
+	<ids_rover_onlinetime>在线时间</ids_rover_onlinetime>
 </Head>

@@ -22,7 +22,7 @@
   						<li id="customerModule"><a href="accountInfo.jsp">用户信息</a></li>
   						<li id="stationMapModule"><a href="stationMapUser.jsp">网络状态</a></li>
   						<li id="stationListModule"><a href="stationListUser.jsp">站点列表</a></li>
-  						<li id="skyplotModule"><a href="stationSkyplot.jsp">星图</a></li>
+  						<li id="skyplotModule"><a href="stationSkyplot.jsp">卫星信息</a></li>
   						<li id="downloadRinexModule"><a href="downloadRinex.jsp">下载Rinex</a></li>
   						<li id="downloadVirtualModule"><a href="virtualRinex.jsp">虚拟站</a></li>
   					</ul>

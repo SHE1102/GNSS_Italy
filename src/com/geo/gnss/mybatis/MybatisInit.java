@@ -31,6 +31,7 @@ public class MybatisInit {
 		session = sessionFactory.openSession();
 		session.update("geo.createTableCustomer");
 		session.update("geo.createTableDownloadLog");
+		session.update("geo.createTableRecord");
 		
 		UserDao userDao = new UserDao();
 		userDao.setName("geo");

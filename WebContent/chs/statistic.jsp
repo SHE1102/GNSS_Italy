@@ -16,6 +16,7 @@
         <style>
             #Graph{width:100%;height:100%;}
             .GraphDiv{width:100%;height:auto;}
+            #RoverMap{height:500px;}
             span#SelectGraph{float:right;border:20px solid transparent;border-right-color: #DDD;}
         </style>
     </head>
@@ -24,18 +25,14 @@
     	<%@ include file="menuHor.jsp" %>
     	
     	<div class="Body">
-    		<!-- <%@ include file="menu.jsp" %> -->
-    		
     		<div class="Content"  >
     			 <div id="Graph">
     			     <div id="RegisterGraph" class="GraphDiv"></div>
     			     <div id="DownloadGraph" class="GraphDiv"></div>
-    			     <!-- <div id="" class="GraphDiv"></div>
-    			     <div id="" class="GraphDiv"></div>
-    			     <div id="" class="GraphDiv"></div> -->
+    			     <div id="RoverGraph" class="GraphDiv"></div>
+    			     <div id="RoverMap" class="GraphDiv"></div>
     			 </div>
     		</div>
-    		
     	</div>
     	
     	<%@ include file="foot.jsp" %>

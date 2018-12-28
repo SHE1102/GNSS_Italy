@@ -54,6 +54,8 @@ public class SkyplotManage {
 			+"\",\"id\":\"" + obj.getId()
 			+"\",\"azimuth\":\"" + obj.getAzimuth()
 			+"\",\"elevation\":\"" + obj.getElevation()
+			+"\",\"snr0\":\"" + obj.getSnr0()
+			+"\",\"snr1\":\"" + obj.getSnr1()
 			+"\"}";
 			
 			if(obj != skyplotList.get(0)){

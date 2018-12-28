@@ -56,7 +56,8 @@ public class ServletDownloadConvert extends HttpServlet {
 		}
 		
 		DownloadService downloadService = new DownloadService();
-		downloadService.save(downloadInforDao);
+		downloadService.saveDownloadlog(downloadInforDao);
+		downloadService.updateRinexCount();
 		
 		String fileName = request.getParameter("file");
 		

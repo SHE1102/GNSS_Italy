@@ -34,6 +34,7 @@ public class CustomerManage {
 		
     	SqlSession sqlSession = MybatisUtils.getSession();
     	int rows = sqlSession.insert("addCustomer",user);
+    	sqlSession.insert("updateRegisterRecord", new Date());
     	sqlSession.commit();
     	sqlSession.close();
     	

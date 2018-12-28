@@ -22,7 +22,7 @@
   						<li><a href="accountInfo.jsp">Account Info</a></li>
   						<li><a href="stationMapUser.jsp">Network Status</a></li>
   						<li><a href="stationListUser.jsp">Station List</a></li>
-  						<li><a href="stationSkyplot.jsp">Skyplot</a></li>
+  						<li><a href="stationSkyplot.jsp">Satellite Info</a></li>
   						<li><a href="downloadRinex.jsp">Download Rinex</a></li>
   						<li><a href="virtualRinex.jsp">Virtual Rinex</a></li>
   					</ul>
@@ -31,7 +31,7 @@
   					<ul class="submenuHor">
   						<li><a href="configSet.jsp">Setting</a></li>
   						<li><a href="customerManage.jsp">User Management</a></li>
-  						<li><a href="#">User Statistics</a></li>
+  						<li><a href="statistic.jsp">User Statistics</a></li>
   						<li><a href="monograph.jsp">Monograph</a></li>
   						<li><a href="customerAdmin.jsp">Interface management</a></li>
   					</ul>

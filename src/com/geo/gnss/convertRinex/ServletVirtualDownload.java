@@ -54,7 +54,8 @@ public class ServletVirtualDownload extends HttpServlet {
 		}
 		
 		DownloadService downloadService = new DownloadService();
-		downloadService.save(downloadInforDao);
+		downloadService.saveDownloadlog(downloadInforDao);
+		downloadService.updateVirtualCount();
 		
 		String rarName = request.getParameter("fileName");
 		

@@ -23,4 +23,11 @@
 	<ids_stop_ftp_failed>Close FTP failed</ids_stop_ftp_failed>
 	<ids_choose_satellite>Please choose satellite-system</ids_choose_satellite>
 	<ids_no_data>No files</ids_no_data>
+	<ids_register_customer>Register customer</ids_register_customer>
+	<ids_register_count>register count</ids_register_count>
+	<ids_download_statistic>Download statistic</ids_download_statistic>
+	<ids_count>count</ids_count>
+	<ids_rover_statistic>Rover statistic</ids_rover_statistic>
+	<ids_rover_count>rover count</ids_rover_count>
+	<ids_rover_onlinetime>onlineTime</ids_rover_onlinetime>
 </Head>
