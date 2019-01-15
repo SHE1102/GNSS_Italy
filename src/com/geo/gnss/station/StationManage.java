@@ -51,6 +51,7 @@ public class StationManage {
     	
     	Collections.sort(stationList, new StationSort());
     }
+    
     public void read( String xmlPath) throws Exception{
     	SAXReader reader = new SAXReader();
     	//Document document = reader.read(new File(stationsPath));
@@ -152,7 +153,7 @@ public class StationManage {
 			+"\",\"longitude\":\"" + obj.getLongitude()
 			+"\",\"latitudeFormat\":\"" + obj.getLatitudeText()
 			+"\",\"longitudeFormat\":\"" + obj.getLongitudeText()
-			+"\",\"altitude\":\"" + obj.getHeight()
+			+"\",\"altitude\":\"" + obj.getFormatAltitude()
 			+"\",\"antennaType\":\"" + obj.getAntennaType()
 			+"\",\"HL1\":\"" + obj.getU1()
 			+"\",\"HL2\":\"" + obj.getU2()
@@ -195,8 +196,8 @@ public class StationManage {
 			+"\",\"longitude\":\"" + obj.getLongitude()
 			+"\",\"latitudeFormat\":\"" + obj.getLatitudeText()
 			+"\",\"longitudeFormat\":\"" + obj.getLongitudeText()
-			+"\",\"altitude\":" + obj.getHeight()
-			+",\"distance\":\"" + obj.getTargetDistanceText()
+			+"\",\"altitude\":\"" + obj.getFormatAltitude()
+			+"\",\"distance\":\"" + obj.getTargetDistanceText()
 			+"\",\"antennaType\":\"" + obj.getAntennaType()
 			+"\",\"HL1\":\"" + obj.getU1()
 			+"\",\"HL2\":\"" + obj.getU2()
@@ -214,13 +215,17 @@ public class StationManage {
 	}
 	
 	private void checkStationsWorkStatus(){
-    	if(stationList.size() <= 0){
+    	if(stationList == null || stationList.size() <= 0){
     		return;
     	}
     	
 		String stationStateDir = rawPath + File.separator + "StationState";
 		File stationDirFile = new File(stationStateDir);
 		File[] stationFileList = stationDirFile.listFiles();
+		
+		if(stationFileList == null || stationFileList.length <= 0){
+			return;
+		}
 		
 		List<Station> stationListTem = new ArrayList<Station>();
 		
@@ -305,7 +310,7 @@ public class StationManage {
 	    	Element stationTag = root.element("Station");
 	    	currentTime = stationTag.elementTextTrim("CurrentTime");
 	    	
-	    	SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+	    	SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			
 			Date currentDate = sDateFormat.parse(currentTime);
 			Date nowDate = getUTCTime();
@@ -313,6 +318,7 @@ public class StationManage {
 			if(Math.abs(currentDate.getTime() - nowDate.getTime()) <= 60*1000){
 				status = true;
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -326,14 +332,14 @@ public class StationManage {
         // 2、取得时间偏移量：  
         int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);  
         // 3、取得夏令时差：  
-        int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);  
-        // 4、从本地时间里扣除这些差量，即可以取得UTC时间：  
-        cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));  
-        //int year = cal.get(Calendar.YEAR);  
-        //int month = cal.get(Calendar.MONTH)+1;  
-        //int day = cal.get(Calendar.DAY_OF_MONTH);  
-        //int hour = cal.get(Calendar.HOUR_OF_DAY);  
-        //int minute = cal.get(Calendar.MINUTE);   
+        int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);
+        // 4、从本地时间里扣除这些差量，即可以取得UTC时间:
+        cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));
+        //int year = cal.get(Calendar.YEAR);
+        //int month = cal.get(Calendar.MONTH)+1;
+        //int day = cal.get(Calendar.DAY_OF_MONTH);
+        //int hour = cal.get(Calendar.HOUR_OF_DAY);
+        //int minute = cal.get(Calendar.MINUTE);
         //int second = cal.get(Calendar.SECOND);
         //String utcTime = String.format("%d-%d-%d %02d:%d:%02d", year, month, day, hour, minute, second);
         return cal.getTime();
@@ -341,7 +347,6 @@ public class StationManage {
   	
   	private boolean  getStationXmlStatus(String stationXmlPath){
   		boolean status = false;
-  		
   		try {
 			SAXReader reader = new SAXReader();
 			Document document = reader.read(new File(stationXmlPath));
@@ -360,6 +365,7 @@ public class StationManage {
 			if(Math.abs(currentDate.getTime() - stationDate.getTime()) <= 30*1000){
 				status = true;
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

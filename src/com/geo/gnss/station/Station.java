@@ -195,6 +195,11 @@ public class Station {
 	public double getHeight() {
 		return destinationH;
 	}
+	
+	public String getFormatAltitude(){
+	    return String.format("%.2f", destinationH);	
+	}
+	
 	public double getN1() {
 		return N1;
 	}

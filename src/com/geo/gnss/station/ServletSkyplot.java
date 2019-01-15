@@ -25,8 +25,6 @@ public class ServletSkyplot extends HttpServlet {
 		SkyplotManage skyplot = new SkyplotManage(rawPath, stationName);
 		String json = skyplot.getJson();
 		response.getWriter().print(json);
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

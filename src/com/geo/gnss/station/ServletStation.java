@@ -18,6 +18,8 @@ public class ServletStation extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=utf-8");
+		//request.setCharacterEncoding("utf-8");
+		//response.setContentType("text/html;chartset=utf-8");
 		
 		ServletContext context = request.getServletContext();
 		String appPath = getServletContext().getRealPath("");
