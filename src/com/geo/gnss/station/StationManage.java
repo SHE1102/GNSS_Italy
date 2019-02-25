@@ -22,14 +22,12 @@ import com.geo.gnss.util.StationSort;
 public class StationManage {
 	private String rawPath;
 	private String appPath;
-	//private String stationsPath;
 	
 	List<Station> stationList = new ArrayList<Station>();
 	
     public StationManage(String rawPath, String appPath){
     	this.rawPath = rawPath;
     	this.appPath = appPath;
-    	//stationsPath = rawPath + File.separator + "Stations.xml";
     }
     
     public void read() throws Exception{
@@ -54,7 +52,6 @@ public class StationManage {
     
     public void read( String xmlPath) throws Exception{
     	SAXReader reader = new SAXReader();
-    	//Document document = reader.read(new File(stationsPath));
     	Document document = reader.read(new File(xmlPath));
     	
     	Element root = document.getRootElement();
@@ -327,11 +324,11 @@ public class StationManage {
   	}
   	
   	private Date getUTCTime(){
-        // 1、取得本地时间：  
-        Calendar cal = Calendar.getInstance() ;  
-        // 2、取得时间偏移量：  
-        int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);  
-        // 3、取得夏令时差：  
+        // 1、取得本地时间:
+        Calendar cal = Calendar.getInstance();
+        // 2、取得时间偏移量:
+        int zoneOffset = cal.get(java.util.Calendar.ZONE_OFFSET);
+        // 3、取得夏令时差:
         int dstOffset = cal.get(java.util.Calendar.DST_OFFSET);
         // 4、从本地时间里扣除这些差量，即可以取得UTC时间:
         cal.add(java.util.Calendar.MILLISECOND, -(zoneOffset + dstOffset));
@@ -360,7 +357,7 @@ public class StationManage {
 	    	SimpleDateFormat sDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //加上时间
 			
 			Date currentDate = sDateFormat.parse(currentTime);
-			Date stationDate=sDateFormat.parse(stationTime);
+			Date stationDate = sDateFormat.parse(stationTime);
 			
 			if(Math.abs(currentDate.getTime() - stationDate.getTime()) <= 30*1000){
 				status = true;

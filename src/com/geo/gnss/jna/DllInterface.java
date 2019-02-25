@@ -49,15 +49,14 @@ public class DllInterface {
 		//boolean SinglePosition(String fileName, double[] coord, HWND hwnd);
 		boolean SinglePositionAndroid(String name, DoubleByReference coor1, 
 				DoubleByReference coor2, DoubleByReference coor3, HWND hwnd);
-		
 	}
+	
 	public interface PostPositionDLL64 extends Library{
 		public PostPositionDLL64 instance = (PostPositionDLL64)Native.loadLibrary("PostPositionDLL64",PostPositionDLL64.class);
 		
 		//boolean SinglePosition(String fileName, double[] coord, HWND hwnd);
 		boolean SinglePositionAndroid(String name, DoubleByReference coor1, 
-				DoubleByReference coor2, DoubleByReference coor3, HWND hwnd);
-		
+				DoubleByReference coor2, DoubleByReference coor3, HWND hwnd);	
 	}
 	
 	public interface VirtualRinexMakerDLL extends Library{
@@ -67,7 +66,6 @@ public class DllInterface {
 				String date, String startTime, String endTime,int zone,
 				int rinex3, int mixture, double timeInterval, int singleFre, int navSys,
 				 String obsPath, String rinexPath, String xmlPath);
-		
 	}
 	
 	public interface VirtualRinexMakerDLL64 extends Library{
@@ -77,7 +75,6 @@ public class DllInterface {
 				String date, String startTime, String endTime,int zone,
 				int rinex3, int mixture, double timeInterval, int singleFre, int navSys,
 				String obsPath, String rinexPath, String xmlPath);
-		
 	}
 	
 	public interface StaticBaseLineSolution64 extends Library{

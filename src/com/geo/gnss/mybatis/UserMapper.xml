@@ -57,11 +57,11 @@
         insert into record values(#{date}, #{registerCount}, #{rinexCount}, #{virtualCount})
     </insert>
     
-    <resultMap id="recordResult" type="com.geo.gnss.dao.RecordCountDao"> 
-	    <result column="recordDate" property="date"></result> 
-	    <result column="register" property="registerCount"></result> 
-	    <result column="downloadRinex" property="rinexCount"></result> 
-	    <result column="downloadVirtual" property="virtualCount"></result> 
+    <resultMap id="recordResult" type="com.geo.gnss.dao.RecordCountDao">
+	    <result column="recordDate" property="date"></result>
+	    <result column="register" property="registerCount"></result>
+	    <result column="downloadRinex" property="rinexCount"></result>
+	    <result column="downloadVirtual" property="virtualCount"></result>
     </resultMap>
 
     <select id="selectRecord" resultMap="recordResult">
@@ -69,27 +69,27 @@
     </select>
     
     <!-- logcount表 -->
-    <resultMap id="roverResult" type="com.geo.gnss.statistic.RoverDao"> 
-	    <result column="logday" property="date" jdbcType="DATE" javaType="java.util.Date"></result> 
-	    <result column="count" property="count" ></result> 
-	    <result column="subtime" property="onlineTime"></result> 
+    <resultMap id="roverResult" type="com.geo.gnss.statistic.RoverDao">
+	    <result column="logday" property="date" jdbcType="DATE" javaType="java.util.Date"></result>
+	    <result column="count" property="count" ></result>
+	    <result column="subtime" property="onlineTime"></result>
     </resultMap>
     
     <select id="selectRoverList" resultMap="roverResult">
         select logday,count(*) as count,sum(onlinetime) as subtime from logcount group by logday order by logday desc limit 30
     </select>
     
-    <resultMap id="corsResult" type="com.geo.gnss.statistic.CorsDao"> 
-	    <result column="usertype" property="userType" ></result> 
-	    <result column="username" property="userName" ></result> 
-	    <result column="logday" property="logDay" ></result> 
-	    <result column="addrs" property="addrs"></result> 
-	    <result column="lastposition" property="position"></result> 
-	    <result column="onlinetime" property="onlineTime"></result> 
+    <resultMap id="corsResult" type="com.geo.gnss.statistic.CorsDao">
+	    <result column="usertype" property="userType" ></result>
+	    <result column="username" property="userName" ></result>
+	    <result column="logday" property="logDay" ></result>
+	    <result column="addrs" property="addrs"></result>
+	    <result column="lastposition" property="position"></result>
+	    <result column="onlinetime" property="onlineTime"></result>
     </resultMap>
     
     <select id="selectCorsList" resultMap="corsResult">
-        select * from logcount where logday > (curdate()- 30) 
+        select * from logcount where logday > (curdate()- 30)
     </select>
     
 </mapper>
